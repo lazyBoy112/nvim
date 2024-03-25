@@ -1,8 +1,14 @@
+
 local status, lspconfig = pcall(require, 'lspconfig')
 if not status then return end
 
+local sta_cmp, cmp = pcall(require, 'cmp')
+if sta_cmp then
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-local servers = {}
+local servers = {
+  -- 'clangd',
+}
 
 lspconfig.lua_ls.setup {
   on_init = function(client)
@@ -29,13 +35,25 @@ lspconfig.lua_ls.setup {
   end
 }
 
-local sta_cmp, cmp = pcall(require, 'cmp')
-if sta_cmp then
-	local capabilities = require('cmp_nvim_lsp').default_capabilities()
+lspconfig.clangd.setup{
+  cmd = {
+  "clangd",
+  "--query-driver='C:/Espressif/tools/xtensa-esp32-elf/esp-12.2.0_20230208/xtensa-esp32-elf/bin/xtensa-esp32-elf-gcc'",
+  },
+  filetypes = {"c", "cpp"},
+  capabilities = capabilities,
+}
 
-	for _, server in ipairs(servers) do
-		lspconfig[server].setup {
-			capabilities = capabilities,
-		}
-	end
+
+  for _, server in ipairs(servers) do
+    lspconfig[server].setup {
+      capabilities = capabilities,
+    }
+  end
+end
+
+local signs = { Error='E', Warn='W', Hint='H', Info='I'}
+for type, icon in pairs(signs) do
+  local hl = 'LspSign'..type
+  vim.fn.sign_define(hl, { text=icon, texthl=hl, numhl=hl})
 end
