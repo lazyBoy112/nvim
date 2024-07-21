@@ -203,17 +203,19 @@ local lsp = function ()
   if not width_percent_below(#table.concat(names, ' '), 0.1) then
     return '%#STlsp# '
   end
+  -- return '%#STlsp# '..'[ '..table.concat(names, ' ')..' ]'
   return '%#STlsp# '..'[ '..table.concat(names, ' ')..' ]'
 end
 
 local searchCount = function ()
-  if vim.v.hlsearch == 0 then 
+  if vim.v.hlsearch == 0 then
     return ''
   end
-  local ok, search = pcall(vim.fn.searchcount)
-  if ok then 
+  local search = vim.fn.searchcount()
+  if search ~= nil then
     return '%#STsearch#'..string.format('[%d/%d]', search.current, math.min(search.total, search.maxcount))
   end
+  return ''
 end
 
 local function filetype()
