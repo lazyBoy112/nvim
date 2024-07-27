@@ -3,22 +3,24 @@ if not status then return end
 
 local popup = require('nui.popup')
 local event = require('nui.utils.autocmd').event
-local basic_popup = {
-  enter = true,
-  focusable = true,
-  border = {
-    style = 'rounded',
-    text = {
-      top = " I am top title ",
-      top_align = "center",
+local basic_popup = function(title)
+  return {
+    enter = true,
+    focusable = true,
+    border = {
+      style = 'rounded',
+      text = {
+        top = " # "..tostring(title),
+        top_align = "center",
+      },
     },
-  },
-  position = '50%',
-  size = {
-    width = '80%',
-    height = '70%',
-  },
-}
+    position = '50%',
+    size = {
+      width = '80%',
+      height = '70%',
+    },
+  }
+end
 
 local M = {}
 M.options = {}
@@ -36,7 +38,7 @@ function M.create()
     M.options.n_term = 1
   end
   M.options.active = active
-  M.terms[active] = popup(basic_popup)
+  M.terms[active] = popup(basic_popup(active))
   M.terms[active]:on(event.BufLeave, function()
     M.terms[active]:unmount()
   end)

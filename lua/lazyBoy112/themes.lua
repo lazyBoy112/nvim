@@ -20,7 +20,7 @@ local themes = {
   -- ['Cursor'] = {}, 
   ['LineNr'] = { fg=mColor.yellow, bg=mColor.none },
   ['CursorLine'] = { fg=mColor.none, bg=mColor.cyan },
-  ['CursorLineNr'] = { fg=mColor.black, bg=mColor.yellow, bold=true },
+  ['CursorLineNr'] = { fg=mColor.black, bg=mColor.none, bold=true },
   -- ['Directory'] = {},
   -- ['DiffAdd'] = {},
   -- ['DiffChange'] = {},
@@ -134,6 +134,11 @@ local themes = {
   ['GitSignsUntracked'] = { fg=mColor.l_magenta, bg=mColor.none },
 
   ['CmpItemMenu'] = { bg=mColor.black },
+
+  ['lazyBoyFoldNumber'] = { fg=mColor.l_black, bg=mColor.none },
+  ['lazyBoyFoldSelNumber'] = { fg=mColor.l_white, bg=mColor.l_black, bold=true },
+  ['lazyBoyFoldSign'] = { fg=mColor.green, bg=mColor.none, bold=true },
+  ['lazyBoyFoldBorder'] = { fg=mColor.l_black,bg=mColor.none },
 }
 
 

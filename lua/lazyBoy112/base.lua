@@ -10,13 +10,17 @@ M.options = {
 
   foldmethod = 'expr', -- manual, indent, expr, marker, syntax, diff
   foldexpr= 'v:lua.vim.treesitter.foldexpr()',
-  foldcolumn = '1',
+  foldcolumn = '0',
   foldlevel = 99,
   foldlevelstart = 99,
   foldenable = true,
-  foldtext = 'v:lua.foldDisplay()',
+  -- foldtext = 'v:lua.foldDisplay()',
+  foldtext = "v:lua.require('lazyBoy112.plugins.fold').lazyBoy_foldtext()",
   tabline = '%!v:lua.lazy_bufferline()',
   showtabline = 2,
+
+  -- statuscolumns
+  statuscolumn = "%!v:lua.require('lazyBoy112.plugins.fold').lazyBoy_foldbar()",
 
   autowrite = true, -- Enable auto write
   clipboard = "unnamedplus", -- Sync with system clipboard
@@ -45,7 +49,7 @@ M.options = {
   shiftwidth = 2, -- Size of an indent
   showmode = false, -- Dont show mode since we have a statusline
   sidescrolloff = 8, -- Columns of context
-  signcolumn = "auto", -- Always show the signcolumn, otherwise it would shift the text each time
+  signcolumn = "yes", -- Always show the signcolumn, otherwise it would shift the text each time
   smartcase = true, -- Don't ignore case with capitals
   smartindent = true, -- Insert indents automatically
   spelllang = { "en" },
@@ -67,8 +71,8 @@ M.options = {
     foldclose = "",
     -- fold = "┋",
     fold = " ",
-    foldsep = "┋", -- ┊, │
-    -- foldsep = " ", -- ┊, │
+    -- foldsep = "┋", -- ┊, │
+    foldsep = " ", -- ┊, │
     diff = "╱",
     eob = " ",
   },
@@ -188,18 +192,6 @@ M.plugins = {
   { 'windwp/nvim-autopairs', event='InsertEnter', opts={} },
   { 'numToStr/Comment.nvim', lazy=false },
   { 'lewis6991/gitsigns.nvim'},
-  -- lazy.nvim
-  -- {
-  --   'folke/noice.nvim',
-  --   event = "VeryLazy",
-  --   opts = {
-  --     -- add any options here
-  --   },
-  --   dependencies = {
-  --   -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-  --   'MunifTanjim/nui.nvim',
-  --   }
-  -- },
   { 'MunifTanjim/nui.nvim' },
 }
 
