@@ -212,7 +212,7 @@ local searchCount = function ()
     return ''
   end
   local search = vim.fn.searchcount()
-  if search ~= nil then
+  if search.current ~= nil then
     return '%#STsearch#'..string.format('[%d/%d]', search.current, math.min(search.total, search.maxcount))
   end
   return ''
