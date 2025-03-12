@@ -20,7 +20,7 @@ M.options = {
   showtabline = 2,
 
   -- statuscolumns
-  statuscolumn = "%!v:lua.require('lazyBoy112.plugins.fold').lazyBoy_foldbar()",
+  -- statuscolumn = "%!v:lua.require('lazyBoy112.plugins.fold').lazyBoy_foldbar()",
 
   autowrite = true, -- Enable auto write
   clipboard = "unnamedplus", -- Sync with system clipboard
@@ -186,13 +186,13 @@ M.plugins = {
   { 'nvim-tree/nvim-web-devicons' },
   { 'nvimdev/lspsaga.nvim', dependecies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons'}, event='LspAttach',},
   { 'nvim-lua/plenary.nvim' },
-  { 'nvim-telescope/telescope.nvim', tag='0.1.4', dependecies= { 'nvim-lua/plenary.nvim' } },
-  { 'nvim-telescope/telescope-file-browser.nvim', dependecies={ 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' } },
+  { 'nvim-telescope/telescope.nvim', tag='0.1.8', dependecies= { 'nvim-lua/plenary.nvim' } },
   { 'nvim-tree/nvim-tree.lua' },
   { 'windwp/nvim-autopairs', event='InsertEnter', opts={} },
   { 'numToStr/Comment.nvim', lazy=false },
   { 'lewis6991/gitsigns.nvim'},
   { 'MunifTanjim/nui.nvim' },
+  { 'akinsho/flutter-tools.nvim', event = 'VeryLazy', dependecies = { 'nvim-lua/plenary.nvim', 'stevearc/dressing.nvim' } },
 }
 
 

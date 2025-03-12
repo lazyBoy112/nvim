@@ -22,14 +22,15 @@ return {
     { '<leader>e', '<cmd>NvimTreeToggle<cr>', 'file browser' },
 
     -- Saga
-    { '<leader>la', '<cmd>Lspsaga code_action', 'Code action' },
-    { '<leader>ld', '<cmd>Lspsaga peek_definition<cr>', 'definition' },
+    { '<leader>la<cr>', '<cmd>Lspsaga code_action', 'Code action' },
+    { '<leader>ld<cr>', '<cmd>Lspsaga peek_definition<cr>', 'definition' },
     { 'g[', '<cmd>Lspsaga diagnostic_jump_next<cr>', 'next diagnostic' },
     { 'g]', '<cmd>Lspsaga diagnostic_jump_prev<cr>', 'prev diagnostic' },
     { 'K', '<cmd>Lspsaga hover_doc<cr>', 'hove document' },
     { '<leader>le', '<cmd>Lspsaga show_workspace_diagnostics ++float<cr>', 'show all diagnostic' },
     { '<leader>lr', '<cmd>Lspsaga rename<cr>', 'remame' },
     { '<leader>lf', '<cmd>Lspsaga finder<cr>', 'finder' },
+    { '<leader>ld', '<cmd>Lspsaga show_workspace_diagnostics<cr>', 'show diagnostic'},
 
     { '<leader>sf', '<cmd>Telescope find_files theme=dropdown<cr>', 'find find' },
     { '<leader>sw', '<cmd>Telescope live_grep theme=dropdown<cr>', 'find word' },
@@ -40,6 +41,7 @@ return {
 
     { '<leader>bf', '<cmd>foldclose<cr>', 'foldclose' },
     { '<leader>bg', '<cmd>foldopen<cr>', 'foldopen' },
+    { '<leader>bv', '<cmd>source $MYVIMRC<cr>', 'reload neovim' },
 
     -- Gitsigns
     { '<leader>gs', '<cmd>Gitsigns toggle_signs<cr>', 'toggle sign'},
@@ -55,8 +57,8 @@ return {
     { '<C-l>' ,'<C-\\><C-N><C-w>l', 'move right' },
   },
   v = {
-    { '<A-j>', ":m '>+1<CR>gv=gv", 'move line up(n)' },
-    { '<A-k>', ":m '<-2<CR>gv=gv", 'move line down(n)' },
+    { '<A-j>', ":m '>+1<CR>gv", 'move line up(n)' },
+    { '<A-k>', ":m '<-2<CR>gv", 'move line down(n)' },
     { '<A-h>', '<gv', 'shift line left' },
     { '<A-l>', '>gv', 'shift line right' },
 
