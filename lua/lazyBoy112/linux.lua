@@ -1,2 +1,0 @@
-
-vim.opt.shell = 'fish'
