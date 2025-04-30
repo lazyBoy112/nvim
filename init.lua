@@ -47,5 +47,5 @@ vim.diagnostic.config({
 	virtual_lines = true,
 })
 require'core.utils.statusline'
-require'core.utils.bufferline'.setup()
+require'core.utils.bufferline'
 vim.api.nvim_set_hl(0, 'TabLineSel', {fg='#ff0000', bg='#00ff00', sp='#0000ff', bold=true, underline=true })
