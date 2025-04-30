@@ -16,7 +16,10 @@ return {
     -- C-k: Toggle signature help (if signature.enabled = true)
     --
     -- See :h blink-cmp-config-keymap for defining your own keymap
-    keymap = { preset = 'enter' },
+    keymap = {
+      preset = 'enter',
+      -- ['<c-k>'] = { 'show_documentation', 'fallback' },
+    },
 
     appearance = {
       -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
@@ -26,8 +29,8 @@ return {
 
     -- (Default) Only show the documentation popup when manually triggered
     completion = {
-      --accept = { auto_brackets = { enable = false } },
-      documentation = { auto_show = false },
+      accept = { auto_brackets = { enabled = true } },
+      documentation = { auto_show = true, auto_show_delay_ms = 500, treesitter_highlighting = false },
       menu = {
         --enable = true,
         border = "rounded",
@@ -65,25 +68,13 @@ return {
     -- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
     --
     -- See the fuzzy documentation for more information
-    fuzzy = { implementation = "prefer_rust_with_warning" }
+    fuzzy = { implementation = "prefer_rust_with_warning" },
+    signature = {
+      enabled = true,
+      window = {
+        border = 'rounded'
+      }
+    }
   },
   opts_extend = { "sources.default" },
-  -- config = function ()
-  --   local capabilities = vim.lsp.protocol.make_client_capabilities()
-
-  --   capabilities = vim.tbl_deep_extend('force', capabilities, require('blink.cmp').get_lsp_capabilities({}, false))
-
-  --   capabilities = vim.tbl_deep_extend('force', capabilities, {
-  --     textDocument = {
-  --       foldingRange = {
-  --         dynamicRegistration = false,
-  --         lineFoldingOnly = true
-  --       }
-  --     }
-  --   })
-  --   vim.lsp.config('*', {
-  --     root_markers = { '.git' },
-  --     capabilities = capabilities
-  --   })
-  -- end
 }
