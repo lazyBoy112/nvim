@@ -4,7 +4,7 @@ local default_options = {
 	clipboard = 'unnamedplus',
 	swapfile = false,
 	completeopt = 'menuone,noinsert,noselect',
-	signcolumn = 'yes',
+	signcolumn = 'yes:1',
 	undofile = true,
 	showcmd = true,
 	cursorline = true,
@@ -19,6 +19,7 @@ local default_options = {
 
 	number = true,
 	relativenumber = true,
+  statuscolumn = '%l%s',
 	showmatch = true,
   foldenable = true,
   foldlevel = 99,
