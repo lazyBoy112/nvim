@@ -69,6 +69,13 @@ return {
       beacon = {
         enable = false,
       }
+    },
+    outline = {
+      keys = {
+        toggle_or_jump = '<c-o>',
+        quit = 'q',
+        jump = '<cr>'
+      }
     }
   }
 }
