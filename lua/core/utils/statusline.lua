@@ -119,15 +119,12 @@ local git = function()
   end
   local count = ''
   if has_changes then
-    count = '('..'%#STgitAdd#'..s_add..'%#STgitRemove#'..s_remove..'%#STgitChange#'..s_change..'%#STgitBranch#'..')'
+    count = '('..'%#GitSignsAdd#'..s_add..'%#GitSignsDelete#'..s_remove..'%#GitSignsChange#'..s_change..'%#STgitBranch#'..')'
   end
 
-  local str = '%#STgitBranch#'..' '..branch..count
+  local str = '%#STgitBranch#'..'  '..branch..count
   local cstr = str
-  if not width_percent_below(#str, 0.7)  then
-    cstr = '%#STgitBranch#'..' '
-  end
-  -- if not width_percent_below(#str, 1.5) then
+  if not width_percent_below(#str, 0.7)  then cstr = '%#STgitBranch#'..' ' end -- if not width_percent_below(#str, 1.5) then
   --   return ''
   -- end
 

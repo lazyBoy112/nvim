@@ -140,9 +140,10 @@ M.groups = {
 			bg = M.colors.black,
 			fg = M.colors.white,
 	}, -- status lines of not-current windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
-	TabLine = { bg = M.colors.black }, -- tab pages line, not active tab page label
-	TabLineFill = { bg = M.colors.black, fg = M.colors.white }, -- tab pages line, where there are no labels
-	TabLineSel = { bg = M.colors.purple, fg = M.colors.black }, -- tab pages line, active tab page label
+	TabLine = { bg = M.colors.none, fg = M.colors.gray }, -- tab pages line, not active tab page label
+	TabLineFill = { bg = M.colors.none, fg = M.colors.white }, -- tab pages line, where there are no labels
+	TabLineSel = { bg = color.darken(M.colors.gray, 0.5) , fg = M.colors.purple, bold = true }, -- tab pages line, active tab page label
+  HlSepActive = { bg = color.darken(M.colors.gray, 0.5) , fg = M.colors.purple },
 	TermCursor = { bg = M.colors.purple }, -- cursor in a focused terminal
 	TermCursorNC = { bg = M.colors.gray }, -- cursor in an unfocused terminal
 	Title = { fg = M.colors.green }, -- titles for output from ":set all", ":autocmd"
@@ -472,8 +473,9 @@ M.groups = {
 	GitSignsAddInline = { bg = M.theme.git_hunk_add_inline },
 	GitSignsChangeInline = { bg = M.theme.git_hunk_change_inline },
 	GitSignsDeleteInline = { bg = M.theme.git_hunk_delete_inline },
+  STgitBranch = { fg=M.colors.orange, bg=M.colors.none },
 
-	-- GitSign
+	-- LspSaga
 	LspSagaDiagnosticBorder = { link = "NormalNC" },
 	LspSagaDiagnosticHeader = { fg = M.colors.purple },
 	LspSagaDiagnosticTruncateLine = { link = "NormalNC" },

@@ -17,7 +17,7 @@ return {
     code_action = {
       num_shortcut = true,
       show_server_name = true,
-      extend_gitsigns = true,
+      extend_gitsigns = false,
     },
     definition = {
       keys = {
@@ -40,10 +40,10 @@ return {
         open_cmd = '!chrome'
       }
     },
-    light_bulb = {
-      enable = true,
+    lightbulb = {
+      enable = false,
       sign = false,
-      virtual_text = true,
+      virtual_text = false,
     },
     rename = {
       keys = {

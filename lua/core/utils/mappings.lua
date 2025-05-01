@@ -19,9 +19,12 @@ M.setup = function(opts)
       print('Error: '..modulename..' is not a table')
       return
     end
+    for _, key in ipairs(module) do
+      -- print(vim.inspect(key))
+      vim.keymap.set(key[1], key[2], key[3], key[4])
+    end
 
     -- print(vim.inspect(module))
-    M.keymap = vim.list_extend(M.keymap, module)
   end
   --M.keymap = vim.tbl_extend('force', moduleMap, opts or {})
   for _, key in ipairs(M.keymap) do
