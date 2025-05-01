@@ -60,7 +60,7 @@ local mytabline = function ()
   local finalTabline = ''
   local bufsArray = vim.api.nvim_list_bufs() -- check loaded by nvim_buf_is_loaded
   local currentBuf = vim.api.nvim_get_current_buf()
-  local maxTabs = vim.o.columns / (opts.max_length + 2)
+  local maxTabs = math.floor(vim.o.columns / (opts.max_length + 1)) -- 16
 
   local bufTbl = {}
   local currentIndex = getCurrentIndexBuffer(currentBuf, bufsArray)
@@ -68,10 +68,13 @@ local mytabline = function ()
 
   local startIndex = currentIndex < maxTabs and 1 or page * maxTabs
   local endIndex = currentIndex < maxTabs and maxTabs or (page + 1) * maxTabs - 1
-  startIndex = currentIndex <= maxTabs - 1 and 1 or currentIndex - maxTabs + 1
-  endIndex = ( maxTabs >= #bufsArray ) and #bufsArray
-                                      or ( currentIndex <= maxTabs - 1 ) and maxTabs
-                                                                          or currentIndex + 2
+  endIndex = currentIndex + 1
+  if endIndex - maxTabs  < 1 then
+    startIndex = 1
+    endIndex = maxTabs
+  else
+    startIndex = endIndex - maxTabs + 1
+  end
 
   local filename = ''
   local tabTilte = ''
@@ -81,9 +84,9 @@ local mytabline = function ()
 
   for i=startIndex, endIndex do
     bufnr = bufsArray[i]
-    -- print(vim.inspect(bufsArray))
-    -- print(i)
-    -- print(bufnr)
+    print(i)
+    print(bufnr)
+    print(vim.inspect(bufsArray))
     if bufnr == nil then break end
 
     if vim.api.nvim_buf_is_loaded(bufnr) and vim.api.nvim_get_option_value('buflisted', { buf=bufnr }) then
@@ -114,88 +117,12 @@ local mytabline = function ()
   if vim.fn.tabpagenr('$') > 1 then
     finalTabline = finalTabline .. '%#TabLine#%999XX'
   end
+  -- print(finalTabline)
   return finalTabline
 
-  -- local s = ''
-  -- local current_buf = vim.api.nvim_get_current_buf()
-  -- local bufs = vim.api.nvim_list_bufs()
-  -- local max_tabs = vim.o.columns / opts.max_length
-  -- local buf_tbl = {}
-  -- local activebuf = nil
-  -- local right_sep = ''
-  -- local left_sep = ''
-  --
-  -- for _, bufnr in ipairs(bufs) do
-  --   if vim.api.nvim_buf_is_loaded(bufnr) and vim.api.nvim_get_option_value("buflisted", {buf=bufnr}) then
-  --     local name = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(bufnr), ":.")
-  --     name = shorten_path(name)
-  --
-  --     if name == '' then name = '[No Name]' end
-  --     name = (bufnr == current_buf and '' or ' ') .. name..' '
-  --     local tab_title = ''
-  --     left_sep = opts.left_sep_only and current_buf == bufnr and opts.left_sep or ''
-  --     right_sep = opts.left_sep_only and '' or opts.right_sep
-  --
-  --     if current_buf == bufnr then
-  --       tab_title = opts.hl_sep_active .. left_sep ..
-  --       '%#TabLineSel#'.. '%' .. bufnr .. '@v:lua.tabline_click@' .. name ..
-  --       opts.hl_sep_inactive .. right_sep .. '%X'
-  --     else
-  --       tab_title = opts.hl_sep_active .. left_sep ..
-  --       '%#TabLine#'.. '%' .. bufnr .. '@v:lua.tabline_click@' .. name ..
-  --       opts.hl_sep_inactive .. right_sep .. '%X'
-  --     end
-  --
-  --     s = s .. tab_titfle
-  --   end
-  -- end
-  --
-  -- s = s .. '%#TabLineFill#'
-  -- if vim.fn.tabpagenr('$') > 1 then
-  --   s = s .. '%#TabLine#%999XX'
-  -- end
-  -- return s
 end
 
 _G.my_tabline = mytabline
-
--- function _G.my_tabline()
---   local s = ''
---   local current_buf = vim.api.nvim_get_current_buf()
---   local bufs = vim.api.nvim_list_bufs()
---   local right_sep = ''
---   local left_sep = ''
---
---   for _, bufnr in ipairs(bufs) do
---     if vim.api.nvim_buf_is_loaded(bufnr) and vim.api.nvim_get_option_value("buflisted", {buf=bufnr}) then
---       local name = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(bufnr), ":.")
---       name = shorten_path(name)
---       if name == '' then name = '[No Name]' end
---       name = (bufnr == current_buf and '' or ' ') .. name..' '
---       local tab_title = ''
---       left_sep = opts.left_sep_only and current_buf == bufnr and opts.left_sep or ''
---       right_sep = opts.left_sep_only and '' or opts.right_sep
---
---       if current_buf == bufnr then
---         tab_title = opts.hl_sep_active .. left_sep ..
---         '%#TabLineSel#'.. '%' .. bufnr .. '@v:lua.tabline_click@' .. name ..
---         opts.hl_sep_inactive .. right_sep .. '%X'
---       else
---         tab_title = opts.hl_sep_active .. left_sep ..
---         '%#TabLine#'.. '%' .. bufnr .. '@v:lua.tabline_click@' .. name ..
---         opts.hl_sep_inactive .. right_sep .. '%X'
---       end
---
---       s = s .. tab_title
---     end
---   end
---
---   s = s .. '%#TabLineFill#'
---   if vim.fn.tabpagenr('$') > 1 then
---     s = s .. '%#TabLine#%999XX'
---   end
---   return s
--- end
 
 -- Set tabline
 vim.o.showtabline = 2
