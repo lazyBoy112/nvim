@@ -84,9 +84,6 @@ local mytabline = function ()
 
   for i=startIndex, endIndex do
     bufnr = bufsArray[i]
-    print(i)
-    print(bufnr)
-    print(vim.inspect(bufsArray))
     if bufnr == nil then break end
 
     if vim.api.nvim_buf_is_loaded(bufnr) and vim.api.nvim_get_option_value('buflisted', { buf=bufnr }) then
