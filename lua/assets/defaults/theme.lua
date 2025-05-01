@@ -459,11 +459,11 @@ M.groups = {
 	["@string.yaml"] = { fg = M.colors.green },
 
 	-- Gitsign
-	GitSignsAdd = { fg = M.theme.git_add },
+	GitSignsAdd = { fg = M.theme.git_add, bold = true },
 	GitSignsAddCursorLine = { fg = M.theme.git_add, bg = M.colors.cursorline },
 	GitSignsChange = { fg = M.theme.git_change },
 	GitSignsChangeCursorLine = { fg = M.theme.git_change, bg = M.colors.cursorline },
-	GitSignsDelete = { fg = M.theme.git_delete },
+	GitSignsDelete = { fg = M.theme.git_delete, bold = true },
 	GitSignsDeleteCursorLine = { fg = M.theme.git_delete, bg = M.colors.cursorline },
 	GitSignsUntracked = { fg = M.colors.blue },
 	GitSignsUntrackedCursorLine = { fg = M.colors.blue, bg = M.theme.cursorline },
