@@ -153,11 +153,17 @@ end
 
 local function diagnostic()
   local count = {}
+  -- local levels = {
+  --   errors = "Error",
+  --   warnings = "Warn",
+  --   info = "Info",
+  --   hints = "Hint",
+  -- }
   local levels = {
-    errors = "Error",
-    warnings = "Warn",
-    info = "Info",
-    hints = "Hint",
+    errors = vim.diagnostic.severity.ERROR,
+    warnings = vim.diagnostic.severity.WARN,
+    info = vim.diagnostic.severity.INFO,
+    hints = vim.diagnostic.severity.HINT,
   }
 
   for k, level in pairs(levels) do
@@ -215,16 +221,16 @@ local searchCount = function ()
   return ''
 end
 
-local function filetype()
-  local ft = vim.bo.filetype
-  if ft == "alpha" or ft == 'TelescopePrompt' then
-    return ""
-  end
-  if not width_percent_below(#ft, 0.04) then
-    return ''
-  end
-  return ' %#STfiletype#'..ft..' '
-end
+-- local function filetype()
+--   local ft = vim.bo.filetype
+--   if ft == "alpha" or ft == 'TelescopePrompt' then
+--     return ""
+--   end
+--   if not width_percent_below(#ft, 0.04) then
+--     return ''
+--   end
+--   return ' %#STfiletype#'..ft..' '
+-- end
 
 local sepL = '%#STsepL#'
 
