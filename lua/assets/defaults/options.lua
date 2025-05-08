@@ -25,7 +25,7 @@ local default_options = {
   foldlevel = 99,
 	foldmethod = 'expr',
 	foldexpr = 'v:lua.vim.lsp.foldexpr()',
-	colorcolumn = '80', -- line lenght marker at 80 columns
+	-- colorcolumn = '80', -- line lenght marker at 80 columns
 
 	splitright = true,
 	splitbelow = true,

@@ -11,7 +11,6 @@ if vim.fn.executable('git') ~= 1 then
 	vim.notify("git is not install?? Install git first!")
 end
 
-
 -- init lazy nvim
 require "core.manager.lazy"
 
@@ -44,6 +43,7 @@ theme.setup()
 -- })
 
 vim.diagnostic.config({
+  signs = false,
 	virtual_lines = {
     severity = {
       min = vim.diagnostic.severity.WARN
@@ -52,4 +52,3 @@ vim.diagnostic.config({
 })
 require'core.utils.statusline'
 require'core.utils.bufferline'
--- vim.api.nvim_set_hl(0, 'TabLineSel', {fg='#ff0000', bg='#00ff00', sp='#0000ff', bold=true, underline=true })
